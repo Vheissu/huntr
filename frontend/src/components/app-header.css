@@ -36,7 +36,8 @@
     position: relative;
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown:hover .dropdown-menu,
+.dropdown:focus .dropdown-menu {
     opacity: 1;
     transform: translateY(0);
 }
