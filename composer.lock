@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4af9516d9dbe23a437a451c59cf9a932",
+    "content-hash": "e8c8fe9373396561a2f760bc33342a92",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -5021,6 +5021,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/relevanssi/"
+        },
+        {
+            "name": "wpackagist-plugin/simple-jwt-login",
+            "version": "3.4.6",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/simple-jwt-login/",
+                "reference": "tags/3.4.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/simple-jwt-login.3.4.6.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/simple-jwt-login/"
         },
         {
             "name": "wpackagist-plugin/wp-graphql",
