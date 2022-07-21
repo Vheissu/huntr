@@ -30,7 +30,7 @@ define('FS_METHOD', "direct");
 define('WP_AUTO_UPDATE_CORE', "minor");
 
 define( 'WP_CONTENT_DIR',   dirname(__FILE__) . '/wp-content');
-define( 'WP_SITEURL', 'https://' . $_SERVER['HTTP_HOST'] . '/wp');
+define( 'WP_SITEURL', 'https://' . $_SERVER['HTTP_HOST'] . '/');
 define( 'WP_HOME', 'https://' . $_SERVER['HTTP_HOST'] . '/');
 
 if ( !defined('WP_ENVIRONMENT_TYPE') ) {
