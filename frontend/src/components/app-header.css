@@ -32,12 +32,12 @@
     list-style: none;
 }
 
-.dropdown {
+.menu-dropdown {
     position: relative;
 }
 
-.dropdown:hover .dropdown-menu,
-.dropdown:focus .dropdown-menu {
+.menu-dropdown:hover .dropdown-menu,
+.menu-dropdown:focus .dropdown-menu {
     opacity: 1;
     transform: translateY(0);
 }
@@ -49,4 +49,12 @@
     top: 17px;
     transform: translateY(10px);
     width: 280px;
+    z-index: 250;
+}
+
+.dropdown-items {
+    background: #FFF;
+    list-style: none;
+    margin-top: 25px;
+    overflow: hidden;
 }
