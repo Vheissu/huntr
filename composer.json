@@ -20,6 +20,7 @@
 		"wp-cli/wp-cli-bundle": "*",
 		"wpackagist-plugin/regenerate-thumbnails": "*",
 		"wpackagist-plugin/relevanssi": "*",
+		"wpackagist-plugin/wp-graphql": "^1.8",
 		"wpackagist-plugin/wp-rest-cache": "2021.4.1"
 	},
 	"scripts": {

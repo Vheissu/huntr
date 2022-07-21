@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df66ec4632f76df3036c19b766d17a17",
+    "content-hash": "4b5b97dfecb322b5449824ae6fecb13b",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -5003,6 +5003,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/relevanssi/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-graphql",
+            "version": "1.8.6",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-graphql/",
+                "reference": "tags/1.8.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-graphql.1.8.6.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-graphql/"
         },
         {
             "name": "wpackagist-plugin/wp-rest-cache",
