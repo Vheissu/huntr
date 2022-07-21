@@ -11,5 +11,10 @@ You will also need the Composer package manager installed to install dependencie
 - `composer install` to install dependencies
 - Copy `.env.example` to `.env`
 - Update the database connection details in this environment file to point to your database
+- Setup WordPress and select the theme, activate plugins
 
 One very important thing to note is that WordPress is configured to be installed in a folder (`wp`). This means that you will need to create rewrite rules for your server. Fortunately, there is a `nginx.conf` file in this project which gives you the needed rewrite rules to ensure your application looks like `https://myapp.com/` and not `https://myapp.com/wp`
+
+## Demo
+
+Want to see the app running? I bought a domain name for this (seriously): https://itemhuntr.com

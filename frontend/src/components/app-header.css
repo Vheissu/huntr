@@ -1,0 +1,51 @@
+:host {
+    align-items: center;
+    box-shadow: 0 0 1px 1px rgb(33 41 63 / 10%);
+    display: flex;
+    flex-direction: row;
+    height: 80px;
+    padding-left: 30px;
+    padding-right: 30px;
+    position: sticky;
+    top: 0;
+}
+
+.search {
+    margin-left: 30px;
+}
+
+.search-input {
+    appearance: none;
+    background: #f2f2f3;
+    border: 0;
+    border-radius: 5px;
+    height: 40px;
+    padding: 0 15px;
+    width: 225px;
+}
+
+.main-menu {
+    margin-left: 30px;
+}
+
+.menu {
+    list-style: none;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown:hover ~ .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dropdown-menu {
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 17px;
+    transform: translateY(10px);
+    width: 280px;
+}
