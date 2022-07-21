@@ -1,0 +1,14 @@
+* {
+    box-sizing: border-box;
+    position: relative;
+}
+
+img {
+	max-width: 100%;
+}
+
+.wrapper {
+	max-width: $screen-md;
+	width: 93%;
+	margin: 0 auto;
+}

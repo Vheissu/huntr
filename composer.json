@@ -1,0 +1,52 @@
+{
+	"name": "dwayne/huntr",
+	"description": "A Product Hunt clone built using Aurelia 2 and WordPress",
+	"type": "project",
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^1.0.0",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+		"phpcompatibility/php-compatibility": "^9.3"
+	},
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://wpackagist.org"
+		}
+	],
+	"require": {
+		"johnpbloch/wordpress": "^6.0",
+		"timber/timber": "2.0.0-alpha.6",
+		"vlucas/phpdotenv": "^4.1",
+		"wp-cli/wp-cli-bundle": "*",
+		"wpackagist-plugin/regenerate-thumbnails": "*",
+		"wpackagist-plugin/relevanssi": "*",
+		"wpackagist-plugin/wp-rest-cache": "2021.4.1"
+	},
+	"scripts": {
+		"install-codestandards": [
+			"Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
+		],
+		"phpcs-dev": "\"vendor/bin/phpcs\"",
+		"run-phpcs": [
+			"@phpcs-dev"
+		]
+	},
+	"config": {
+		"preferred-install": "dist",
+		"optimize-autoloader": true,
+		"sort-packages": true,
+		"allow-plugins": {
+			"composer/installers": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"johnpbloch/wordpress-core-installer": true
+		}
+	},
+	"extra": {
+		"wordpress-install-dir": "wp",
+		"installer-paths": {
+		  "wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
+		  "wp-content/mu-plugins/{$name}": ["type:wordpress-muplugin"],
+		  "wp-content/themes/{$name}/": ["type:wordpress-theme"]
+		}
+	}
+}

@@ -1,0 +1,14 @@
+@mixin button($background, $text-color: $color-text-light) {
+	background-color: $background;
+	color: $text-color;
+	padding: $size-base $size-h4;
+	text-decoration: none;
+}
+
+.btn-default {
+	@include button($color-accent-dark);
+}
+
+.btn-info {
+	@include button($color-notice-info, $color-text-dark);
+}
