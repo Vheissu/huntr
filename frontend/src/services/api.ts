@@ -151,9 +151,16 @@ export class Api {
     }
 
     async getProduct(productId: string): Promise<any> {
-        const response = await this.http.fetch(`${REST_ENDPOINT_WP}products/${productId}`);
+        try {
+            const response = await this.http.fetch(`${REST_ENDPOINT_WP}products?post_name=${productId}`);
+            const product = await response.json();
 
-        return response.json();
+            if (product.length) {
+                return product[0];
+            }
+        } catch (e) {
+            return null;
+        }
     }
 
     async getTopics(): Promise<any> {

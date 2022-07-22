@@ -1,0 +1,30 @@
+<div class="container mt-5">
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <h1>${product.title.rendered}</h1>
+            <p class="fs-4 fw-light">${product.hero}</p>
+
+            <div class="buttons d-flex gap-4">
+                <a class="btn btn-lg btn-outline-brand" href="${product.external_link}" title="External link for ${product.title.rendered}">Visit</a>
+                <button type="button" class="btn btn-brand btn-lg">Vote ${product.vote_count}</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12 product" repeat.for="product of products">
+            <div class="row mb-3">
+                <div class="col-4">
+                    <img class="img-fluid" src.bind="product.featured_media_src">
+                </div>
+                <div class="col-8">
+                    <h2 class="product-title h4"><a load="products/${product.slug}" title.bind="product.title.rendered">${product.title.rendered}</a></h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -10,6 +10,12 @@ export class MyApp implements IRouteableComponent {
             title: 'Home'
         },
         {
+            id: 'products',
+            component: () => import('./components/products/products-page'),
+            path: 'products/:product',
+            title: 'Product'
+        },
+        {
             id: 'topics',
             component: () => import('./components/topics/topics-page'),
             path: ['topics', 'topics/:topic'],
@@ -20,6 +26,12 @@ export class MyApp implements IRouteableComponent {
             component: () => import('./components/collections/collections-page'),
             path: ['collections', 'collections/:topic'],
             title: 'Collections'
+        },
+        {
+            id: 'login',
+            component: () => import('./components/auth/login-page'),
+            path: 'login',
+            title: 'Login'
         }
     ];
 

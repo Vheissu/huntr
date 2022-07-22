@@ -11,7 +11,7 @@ const postcssLoader = {
   loader: 'postcss-loader',
   options: {
     postcssOptions: {
-      plugins: ['autoprefixer']
+      plugins: ['autoprefixer', 'postcss-color-mod-function']
     }
   }
 };
