@@ -145,7 +145,7 @@ export class Api {
     }
 
     async getProducts(): Promise<any[]> {
-        const response = await this.http.fetch(`${REST_ENDPOINT_WP}products?status=publish,draft`);
+        const response = await this.http.fetch(`${REST_ENDPOINT_WP}products`);
 
         return response.json();
     }
