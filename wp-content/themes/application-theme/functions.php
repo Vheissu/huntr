@@ -68,6 +68,36 @@ class ApplicationSetup extends Timber\Site
                     'schema'          => null,
                 )
             );
+
+            register_rest_field(
+                'products',
+                'vote_count',
+                array(
+                    'get_callback'    => function ($object) {
+                        $votes = get_field('votes', $object['id']);
+
+                        if (!$votes) {
+                            return 0;
+                        }
+
+                        return count($votes);
+                    },
+                    'update_callback' => null,
+                    'schema'          => null,
+                )
+            );
+
+            register_rest_field(
+                'products',
+                'hero',
+                array(
+                    'get_callback'    => function ($object) {
+                        return get_field('hero', $object['id']);
+                    },
+                    'update_callback' => null,
+                    'schema'          => null,
+                )
+            );
         }
 
         parent::__construct();
