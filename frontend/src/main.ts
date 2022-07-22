@@ -1,5 +1,7 @@
 import Aurelia, { StyleConfiguration } from 'aurelia';
+import { ValidationHtmlConfiguration } from '@aurelia/validation-html';
 import { RouterConfiguration } from '@aurelia/router';
+import { Auth } from './services/auth';
 import { MyApp } from './my-app';
 
 import bootstrap from 'bootstrap/dist/css/bootstrap.css';
@@ -9,6 +11,10 @@ Aurelia
   .register(StyleConfiguration.shadowDOM({
     sharedStyles: [bootstrap, shared]
   }))
-  .register(RouterConfiguration.customize({ useUrlFragmentHash: false }))
+  .register(
+      ValidationHtmlConfiguration, 
+      RouterConfiguration.customize({ useUrlFragmentHash: false }),
+      Auth
+  )
   .app(MyApp)
   .start();
