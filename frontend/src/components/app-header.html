@@ -24,5 +24,8 @@
         <li class="menu-item">
             <a load="about">About</a>
         </li>
+        <li if.bind="!auth.isLoggedIn">
+            <a load="login" title="Login">Login</a>
+        </li>
     </ul>
 </div>

@@ -13,8 +13,7 @@ export class LoginPage {
     constructor(
         @IApi readonly api: IApi,
         @IAuth readonly auth: IAuth,
-        @newInstanceForScope(IValidationController)
-        private validationController: IValidationController,
+        @newInstanceForScope(IValidationController) private validationController: IValidationController,
         @IValidationRules validationRules: IValidationRules,
         @IRouter readonly router: IRouter
     ) {
