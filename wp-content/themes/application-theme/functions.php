@@ -41,13 +41,34 @@ class ApplicationSetup extends Timber\Site
         add_action('init', [$this, 'register_taxonomies']);
         add_action('init', [$this, 'register_menus']);
 
-        add_filter( 'body_class', [$this, 'my_body_classes'] );
+        add_filter('body_class', [$this, 'my_body_classes']);
 
         add_filter('timber/twig/environment/options', function ($options) {
             $options['autoescape'] = false;
 
             return $options;
         });
+
+        add_action('rest_api_init', 'register_rest_images');
+        function register_rest_images()
+        {
+            register_rest_field(
+                'products',
+                'featured_media_src',
+                array(
+                    'get_callback'    => function ($object) {
+                        if ($object['featured_media']) {
+                            $img = wp_get_attachment_image_src($object['featured_media'], 'large');
+                            return $img[0];
+                        }
+
+                        return false;
+                    },
+                    'update_callback' => null,
+                    'schema'          => null,
+                )
+            );
+        }
 
         parent::__construct();
     }
@@ -87,8 +108,9 @@ class ApplicationSetup extends Timber\Site
         return $twig;
     }
 
-    public function my_body_classes( $classes ) {
-        if ( wp_is_mobile() ) {
+    public function my_body_classes($classes)
+    {
+        if (wp_is_mobile()) {
             $classes[] = 'is-mobile';
         }
 
@@ -113,7 +135,7 @@ function custom_application_scripts()
     $app_frontend_path = get_site_url() . '/frontend/dist/entry.bundle.js';
 
     $data['nonce'] = wp_create_nonce('wp_rest');
-    
+
     wp_enqueue_script('app_frontend', $app_frontend_path, array(), filemtime(ABSPATH . "frontend/dist/entry.bundle.js"), true);
     wp_localize_script('app_frontend', 'context', $data);
 }
