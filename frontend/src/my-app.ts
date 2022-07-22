@@ -1,4 +1,4 @@
-import { IRouteableComponent, IRoute } from "@aurelia/router";
+import { IRouteableComponent, IRoute, ReloadBehavior } from "@aurelia/router";
 
 export class MyApp implements IRouteableComponent {
 
@@ -7,7 +7,8 @@ export class MyApp implements IRouteableComponent {
             id: 'home',
             component: import('./components/home/home-page'),
             path: '',
-            title: 'Home'
+            title: 'Home',
+            reloadBehavior: ReloadBehavior.reload
         },
         {
             id: 'products',
