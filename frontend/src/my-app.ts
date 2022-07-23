@@ -32,7 +32,19 @@ export class MyApp implements IRouteableComponent {
             id: 'login',
             component: () => import('./components/auth/login-page'),
             path: 'login',
-            title: 'Login'
+            title: 'Login',
+            data: {
+                public: true
+            }
+        },
+        {
+            id: 'register',
+            component: () => import('./components/auth/register-page'),
+            path: 'register',
+            title: 'Register',
+            data: {
+                public: true
+            }
         },
         {
             id: 'my-profile',

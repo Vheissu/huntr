@@ -59,7 +59,7 @@ export class Auth {
         });
     }
 
-    async register(email: string, username: string, password: string): Promise<IAuthRegisterResponse> {
+    async register(email: string, username: string, password: string): Promise<IRegisterResponse> {
         const response = await this.http.fetch(`${REST_ENDPOINT_AUTH}users`, {
             method: 'POST',
             body: json({

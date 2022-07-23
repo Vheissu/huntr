@@ -4,6 +4,9 @@ import { RouterConfiguration } from '@aurelia/router';
 import { Auth } from './services/auth';
 import { MyApp } from './my-app';
 
+import { AuthHook } from './auth-hook';
+import { RedirectHook } from './redirect-hook';
+
 import bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import shared from './shared.css';
 
@@ -14,7 +17,9 @@ Aurelia
   .register(
       ValidationHtmlConfiguration, 
       RouterConfiguration.customize({ useUrlFragmentHash: false }),
-      Auth
+      Auth,
+      AuthHook,
+      RedirectHook
   )
   .app(MyApp)
   .start();
