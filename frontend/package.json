@@ -11,7 +11,8 @@
     "@aurelia/validation": "^2.0.0-alpha.35",
     "@aurelia/validation-html": "^2.0.0-alpha.35",
     "aurelia": "latest",
-    "bootstrap": "^5.2.0"
+    "bootstrap": "^5.2.0",
+    "izitoast": "^1.4.0"
   },
   "devDependencies": {
     "@aurelia/testing": "latest",
