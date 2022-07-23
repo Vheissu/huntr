@@ -1,23 +1,24 @@
 <div class="container d-flex text-center align-items-center mt-5">
 
     <form class="login m-auto w-100" submit.trigger="handleForm()">
-        <h1 class="h3 mb-3 fw-normal">${showLogin ? 'Welcome home' : 'Forgotten something?'}</h1>
+        <h1 class="h3 mb-3 fw-normal">Register</h1>
 
-        <div class="form-floating">
+        <div class="form-floating mb-2">
+            <input type="text" class="form-control" value.bind="username" id="usernameInput" placeholder="username">
+            <label for="usernameInput">Username</label>
+        </div>
+
+        <div class="form-floating mb-2">
             <input type="email" class="form-control" value.bind="email" id="loginInput" placeholder="someemail@demo.com">
             <label for="loginInput">Email address</label>
         </div>
 
-        <div class="form-floating mb-1" if.bind="showLogin">
+        <div class="form-floating mb-1">
             <input type="password" class="form-control" value.bind="password" id="loginPassword" placeholder="Password">
             <label for="loginPassword">Password</label>
         </div>
 
-        <div class="mb-1">
-            <button type="button" class="btn btn-link" click.trigger="showLogin = !showLogin">${showLogin ? 'Forgot password?' : '< Back'}</button>
-        </div>
-
-        <button class="w-100 btn btn-lg btn-primary" type="submit">${showLogin ? 'Sign in' : 'Email me'}</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
     </form>
 
 </div>
