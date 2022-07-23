@@ -11,6 +11,12 @@ export class MyApp implements IRouteableComponent {
             reloadBehavior: ReloadBehavior.reload
         },
         {
+            id: 'about',
+            component: import('./components/about/about-page'),
+            path: 'about',
+            title: 'About'
+        },
+        {
             id: 'products',
             component: () => import('./components/products/products-page'),
             path: 'products/:product',
