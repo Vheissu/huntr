@@ -122,4 +122,18 @@ export class Api {
 
         return response.json();
     }
+
+    async getComments(productId: number): Promise<any[]> {
+        const response = await this.http.fetch(`${REST_ENDPOINT_WP}comments?post=${productId}`);
+
+        return response.json();
+    }
+
+    async createComment(title: string): Promise<any> {
+        const response = await this.http.fetch(`${REST_ENDPOINT_WP}comments`, {
+            method: 'POST'
+        });
+
+        return response.json();
+    }
 }
