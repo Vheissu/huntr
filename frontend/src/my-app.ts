@@ -5,8 +5,14 @@ export class MyApp implements IRouteableComponent {
     static routes: IRoute[] = [
         {
             component: () => import('./components/home/home-page'),
-            path: ['', 'products'],
-            title: 'Home'
+            path: '',
+            title: 'Home',
+            redirectTo: '/home'
+        },
+        {
+            component: () => import('./components/home/home-page'),
+            path: 'home',
+            title: 'Home',
         },
         {
             id: 'about',
