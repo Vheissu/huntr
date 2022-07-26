@@ -1,14 +1,12 @@
-import { IRouteableComponent, IRoute, ReloadBehavior } from "@aurelia/router";
+import { IRouteableComponent, IRoute } from "@aurelia/router";
 
 export class MyApp implements IRouteableComponent {
 
     static routes: IRoute[] = [
         {
-            id: 'home',
-            component: import('./components/home/home-page'),
-            path: '',
-            title: 'Home',
-            reloadBehavior: ReloadBehavior.reload
+            component: () => import('./components/home/home-page'),
+            path: ['', 'products'],
+            title: 'Home'
         },
         {
             id: 'about',
