@@ -40,6 +40,7 @@ class ApplicationSetup extends Timber\Site
         add_action('init', [$this, 'register_post_types']);
         add_action('init', [$this, 'register_taxonomies']);
         add_action('init', [$this, 'register_menus']);
+        add_action('init', [$this, 'register_image_sizes']);
 
         add_filter('body_class', [$this, 'my_body_classes']);
 
@@ -49,8 +50,8 @@ class ApplicationSetup extends Timber\Site
             return $options;
         });
 
-        add_action('rest_api_init', 'register_rest_images');
-        function register_rest_images()
+        add_action('rest_api_init', 'register_custom_rest_fields');
+        function register_custom_rest_fields()
         {
             register_rest_field(
                 'products',
@@ -59,6 +60,22 @@ class ApplicationSetup extends Timber\Site
                     'get_callback'    => function ($object) {
                         if ($object['featured_media']) {
                             $img = wp_get_attachment_image_src($object['featured_media'], 'large');
+                            return $img[0];
+                        }
+
+                        return false;
+                    },
+                    'update_callback' => null,
+                    'schema'          => null,
+                )
+            );
+            register_rest_field(
+                'products',
+                'tiny_media_src',
+                array(
+                    'get_callback'    => function ($object) {
+                        if ($object['featured_media']) {
+                            $img = wp_get_attachment_image_src($object['featured_media'], 'tiny');
                             return $img[0];
                         }
 
@@ -116,6 +133,11 @@ class ApplicationSetup extends Timber\Site
     public function register_menus()
     {
         require('lib/custom-menus.php');
+    }
+
+    public function register_image_sizes()
+    {
+        require('lib/custom-image-sizes.php');
     }
 
     public function add_to_context($context)
