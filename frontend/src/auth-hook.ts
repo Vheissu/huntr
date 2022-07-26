@@ -8,13 +8,13 @@ export class AuthHook {
 
     }
 
-    canLoad(viewModel, params: Parameters, instruction: RoutingInstruction, navigation: Navigation) { 
-        const canProceed = instruction.route?.match.data?.isAuth && this.auth.isLoggedIn;
-        
-        if (canProceed) {
+    canLoad(viewModel, params: Parameters, instruction: RoutingInstruction, navigation: Navigation) {
+        const isAuth = instruction.route?.match.data?.isAuth ?? false;
+
+        if (!isAuth || this.auth.isLoggedIn && isAuth) {
             return true;
         }
 
-        this.router.load('/login');
+        return this.router.load('/login');
     }
 }

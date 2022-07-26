@@ -9,12 +9,12 @@ export class RedirectHook {
     }
 
     canLoad(viewModel, params: Parameters, instruction: RoutingInstruction, navigation: Navigation) { 
-        const canProceed = instruction.route?.match.data?.public && !this.auth.isLoggedIn;
-        
-        if (canProceed) {
+        const isPublic = instruction.route?.match.data?.public ?? false;
+
+        if (isPublic && !this.auth.isLoggedIn || !isPublic) {
             return true;
         }
 
-        this.router.load('/');
+        return this.router.load('/');
     }
 }
