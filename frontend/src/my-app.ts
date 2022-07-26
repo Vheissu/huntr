@@ -5,7 +5,7 @@ const AppRoutes: IRoute[] = [
         component: () => import('./components/home/home-page'),
         path: '',
         title: 'Home',
-        redirectTo: '/home'
+        //redirectTo: '/home'
     },
     {
         component: () => import('./components/home/home-page'),

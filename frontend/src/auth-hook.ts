@@ -8,6 +8,10 @@ export class AuthHook {
 
     }
 
+    load() {
+        console.log(...arguments);
+    }
+
     canLoad(viewModel, params: Parameters, instruction: RoutingInstruction, navigation: Navigation) {
         const isAuth = instruction.route?.match.data?.isAuth ?? false;
 

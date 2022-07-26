@@ -17,7 +17,6 @@ Aurelia
   .register(
       ValidationHtmlConfiguration, 
       RouterConfiguration.customize({ useUrlFragmentHash: false }),
-      Auth,
       AuthHook,
       RedirectHook
   )
