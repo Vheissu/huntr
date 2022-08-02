@@ -35,6 +35,8 @@ export class RegisterPage {
             const register = await this.auth.register(this.email, this.username, this.password);
 
             if (register.jwt) {
+
+            if (register.success) {
                 localStorage.setItem('token', register.jwt);
 
                 this.toastService.success(new ToastMessage('Your account has been created. Logging you in...', 'Successfully registered!'));
@@ -42,6 +44,9 @@ export class RegisterPage {
                 await(wait(1500));
 
                 this.router.load('/');
+            } else {
+                console.log(register.data.message);
+                this.toastService.error(new ToastMessage(register.data.message, 'Something went wrong'));
             }
         }
     }

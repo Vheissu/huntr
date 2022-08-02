@@ -60,17 +60,21 @@ export class Auth {
     }
 
     async register(email: string, username: string, password: string): Promise<IRegisterResponse> {
-        const response = await this.http.fetch(`${REST_ENDPOINT_AUTH}users`, {
-            method: 'POST',
-            body: json({
-                email,
-                username,
-                password,
-                AUTH_KEY: AUTH_KEY
-            })
-        });
-
-        return response.json();
+        try {
+            const response = await this.http.fetch(`${REST_ENDPOINT_AUTH}users`, {
+                method: 'POST',
+                body: json({
+                    email,
+                    username,
+                    password,
+                    AUTH_KEY: AUTH_KEY
+                })
+            });
+    
+            return response.json();
+        } catch (e) {
+            return await e.json();
+        }
     }
 
     async login(email: string, password: string): Promise<IAuthResponse> {

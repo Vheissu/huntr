@@ -1,7 +1,6 @@
 import Aurelia, { StyleConfiguration } from 'aurelia';
 import { ValidationHtmlConfiguration } from '@aurelia/validation-html';
 import { RouterConfiguration } from '@aurelia/router';
-import { Auth } from './services/auth';
 import { MyApp } from './my-app';
 
 import { AuthHook } from './auth-hook';
