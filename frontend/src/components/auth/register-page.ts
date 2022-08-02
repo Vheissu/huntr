@@ -34,8 +34,6 @@ export class RegisterPage {
         if (result.valid) {
             const register = await this.auth.register(this.email, this.username, this.password);
 
-            if (register.jwt) {
-
             if (register.success) {
                 localStorage.setItem('token', register.jwt);
 
@@ -45,7 +43,6 @@ export class RegisterPage {
 
                 this.router.load('/');
             } else {
-                console.log(register.data.message);
                 this.toastService.error(new ToastMessage(register.data.message, 'Something went wrong'));
             }
         }
