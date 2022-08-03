@@ -1,5 +1,7 @@
 import { IRouteableComponent, IRoute } from "@aurelia/router";
 
+import 'bootstrap/dist/css/bootstrap.css';
+import 'izitoast/dist/css/iziToast.min.css';
 import './variables.css';
 
 const AppRoutes: IRoute[] = [
