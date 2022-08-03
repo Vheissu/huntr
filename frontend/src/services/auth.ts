@@ -119,6 +119,17 @@ export class Auth {
         return response.json();
     }
 
+    async validate(token: string) {
+        const response = await this.http.fetch(`${REST_ENDPOINT_AUTH}auth/validate`, {
+            method: 'POST',
+            body: json({
+                JWT: token
+            })
+        });
+
+        return response.json();
+    }
+
     get isLoggedIn(): boolean {
         return localStorage.getItem('token') !== null;
     }
