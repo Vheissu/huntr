@@ -13,6 +13,16 @@ export class ProductsPage implements IRouteableComponent {
     } 
     
     async castVote() {
-        await this.api.castVote(this.product.id, 'up');
+        let direction = 'up';
+
+        if (this.product.user_voted) {
+            this.product.vote_count--;
+            direction = 'down';
+        } else {
+            this.product.vote_count++;
+            direction = 'up';
+        }
+
+        await this.api.castVote(this.product.id, direction);
     }
 }

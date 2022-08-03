@@ -88,9 +88,39 @@ class ApplicationSetup extends Timber\Site
 
             register_rest_field(
                 'products',
-                'vote_count',
+                'user_voted',
                 array(
                     'get_callback'    => function ($object) {
+                        if ( !isset($_SERVER['HTTP_AUTHORIZATION']) ) {
+                            return false;
+                        }
+                        
+                        $token   = str_replace('Bearer ', '', $_SERVER['HTTP_AUTHORIZATION']);
+                        $decoded = json_decode(base64_decode(str_replace('_', '/', str_replace('-','+',explode('.', $token)[1]))));
+
+                        $votes = get_field('votes', $object['id']);
+
+                        if ( $votes ) {
+                            foreach ($votes as $vote) {
+                                if ( $vote['user'] == $decoded->id ) {
+                                    return true;
+                                }
+                            }
+                        }
+
+                        return false;
+                    },
+                    'update_callback' => null,
+                    'schema'          => null,
+                )
+            );
+
+            register_rest_field(
+                'products',
+                'vote_count',
+                array(
+                    'get_callback' => function ($object) {
+                        $vote_count = 0;
                         $votes = get_field('votes', $object['id']);
 
                         if (!$votes) {
@@ -123,29 +153,50 @@ class ApplicationSetup extends Timber\Site
                 'methods' => 'POST',
                 'permission_callback' => '__return_true',
                 'callback' => function( WP_REST_Request $request ) {
+                    $token   = str_replace('Bearer ', '', $request->get_header('authorization'));
+
+                    $decoded = json_decode(base64_decode(str_replace('_', '/', str_replace('-','+',explode('.', $token)[1]))));
+                    
+                    $user_id = $decoded->id;
+
                     $productId = (int)$request->get_param('id');
                     $body      = json_decode( $request->get_body() );
 
                     // WordPress post exists based on post ID
                     if (get_post($productId)) {
-                        $votes = get_field('votes', $productId);
+                        $votes                = get_field('votes', $productId);
 
-                        if (!$votes) {
-                            $votes = 0;
+                        $vote_found           = false;
+                        $vote_found_index     = 0;
+
+                        if ( $votes ) {
+                            foreach ($votes as $index => $vote) {
+                                if ($vote['user'] == $user_id && $vote['direction'] == $body->direction) {
+                                    return new WP_Error('rest_vote_already_exists', 'You have already voted for this product', array('status' => 400));
+                                }
+
+                                if ($vote['user'] == $user_id && $body->direction == 'down') {
+                                    $vote_found = true;
+                                    $vote_found_index = $index;
+                                }
+                            }
                         }
 
-                        // Refactor this code
-                        if ($body->direction == 'up') {
-                            $votes++;
+                        if ( $vote_found ) {
+                            unset($votes[$vote_found_index]);
                         } else {
-                            $votes--;
+                            $votes[] = array(
+                                'user'      => $user_id,
+                                'direction' => $body->direction,
+                                'date'      => date('Y-m-d H:i:s')
+                            );
                         }
 
                         update_field('votes', $votes, $productId);
 
                         return new WP_REST_Response([
                             'success' => true,
-                            'votes' => $votes
+                            'votes' => count($votes),
                         ]);
                     } else {
                         return new WP_Error('vote_error', 'Invalid vote attempt', array('status' => 500));

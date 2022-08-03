@@ -150,7 +150,6 @@ export class Api {
         const response = await this.http.fetch(`${REST_ENDPOINT_UTILITIES}vote/${productId}`, {
             method: 'POST',
             body: json({
-                authToken: localStorage.getItem('token'),
                 direction
             })
         });
