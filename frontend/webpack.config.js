@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const Dotenv = require('dotenv-webpack');
+const CopyPlugin = require("copy-webpack-plugin");
 
 const cssLoader = 'css-loader';
 
@@ -110,7 +111,12 @@ module.exports = function(env, { analyze }) {
       new Dotenv({
         path: `./.env${production ? '' :  '.' + (process.env.NODE_ENV || 'development')}`,
       }),
-      analyze && new BundleAnalyzerPlugin()
+      analyze && new BundleAnalyzerPlugin(),
+      new CopyPlugin({
+        patterns: [
+          { from: "variables.css", to: "variables.css", context: 'src/' },
+        ],
+      }),
     ].filter(p => p)
   }
 }

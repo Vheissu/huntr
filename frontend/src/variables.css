@@ -1,0 +1,5 @@
+:root {
+    --bs-indigo: #6610f2;
+    --app-orange: #F46F4A;
+    --bs-primary: var(--app-orange);
+}

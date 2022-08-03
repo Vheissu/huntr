@@ -1,5 +1,7 @@
 import { IRouteableComponent, IRoute } from "@aurelia/router";
 
+import './variables.css';
+
 const AppRoutes: IRoute[] = [
     {
         component: () => import('./components/home/home-page'),
