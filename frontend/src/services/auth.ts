@@ -55,6 +55,14 @@ export class Auth {
     constructor() {
         this.http.configure(config => {
             config.useStandardConfiguration();
+            config.withInterceptor({
+                request(request) {
+                    if (localStorage.getItem('token')) {
+                        request.headers.set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+                    }
+                    return request;
+                }
+            });
             return config;
         });
     }
