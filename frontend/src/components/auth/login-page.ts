@@ -39,7 +39,7 @@ export class LoginPage {
 
                 await wait(1500);
 
-                this.router.load('/');
+                window.location.href = '/';
             }
         }
     }
