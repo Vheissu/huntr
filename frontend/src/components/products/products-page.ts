@@ -10,6 +10,9 @@ export class ProductsPage implements IRouteableComponent {
 
     async load(params) {
         this.product = await this.api.getProduct(params.product);
-        console.log(this.product);
-    }  
+    } 
+    
+    async castVote() {
+        await this.api.castVote(this.product.id, 'up');
+    }
 }

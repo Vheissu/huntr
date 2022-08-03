@@ -117,6 +117,43 @@ class ApplicationSetup extends Timber\Site
             );
         }
 
+        add_action('rest_api_init', 'register_custom_api_endpoints');
+        function register_custom_api_endpoints() {
+            register_rest_route('utilities/v1', '/vote/(?P<id>\d+)', array(
+                'methods' => 'POST',
+                'permission_callback' => '__return_true',
+                'callback' => function( WP_REST_Request $request ) {
+                    $productId = (int)$request->get_param('id');
+                    $body      = json_decode( $request->get_body() );
+
+                    // WordPress post exists based on post ID
+                    if (get_post($productId)) {
+                        $votes = get_field('votes', $productId);
+
+                        if (!$votes) {
+                            $votes = 0;
+                        }
+
+                        // Refactor this code
+                        if ($body->direction == 'up') {
+                            $votes++;
+                        } else {
+                            $votes--;
+                        }
+
+                        update_field('votes', $votes, $productId);
+
+                        return new WP_REST_Response([
+                            'success' => true,
+                            'votes' => $votes
+                        ]);
+                    } else {
+                        return new WP_Error('vote_error', 'Invalid vote attempt', array('status' => 500));
+                    }
+                },
+            ));
+        }
+
         parent::__construct();
     }
 

@@ -1,7 +1,8 @@
 import { HttpClient, json } from '@aurelia/fetch-client';
 import { DI } from 'aurelia';
 
-const REST_ENDPOINT_WP   = 'https://api.itemhuntr.com/wp-json/wp/v2/';
+const REST_ENDPOINT_WP        = 'https://api.itemhuntr.com/wp-json/wp/v2/';
+const REST_ENDPOINT_UTILITIES = 'https://api.itemhuntr.com/wp-json/utilities/v1/';
 
 export const IApi = DI.createInterface<IApi>('IApi', x => x.singleton(Api));
 
@@ -132,6 +133,18 @@ export class Api {
     async createComment(title: string): Promise<any> {
         const response = await this.http.fetch(`${REST_ENDPOINT_WP}comments`, {
             method: 'POST'
+        });
+
+        return response.json();
+    }
+
+    async castVote(productId, direction): Promise<any> {
+        const response = await this.http.fetch(`${REST_ENDPOINT_UTILITIES}vote/${productId}`, {
+            method: 'POST',
+            body: json({
+                authToken: localStorage.getItem('token'),
+                direction
+            })
         });
 
         return response.json();
