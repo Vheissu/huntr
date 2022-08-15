@@ -66,6 +66,18 @@ class ApplicationSetup extends Timber\Site
             return $args;
         }
         add_filter('rest_products_query', 'filter_rest_products_query', 10, 2);
+        
+
+        add_filter('simple_jwt_login_generate_payload', function($payload, $wordPressData, $user) {
+            $user_id = $wordPressData->getUserProperty($user, 'id');
+            $avatar_image = get_field('avatar_image', 'user_' . $user_id);
+
+            if ($avatar_image) {
+                $payload['avatar_image'] = $avatar_image['sizes']['thumbnail'];
+            }
+
+            return $payload;
+        }, 10, 3);
 
         add_action('rest_api_init', 'register_custom_rest_fields');
         function register_custom_rest_fields()
