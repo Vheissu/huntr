@@ -7,11 +7,7 @@ export class AuthHook {
     constructor(@IAuth readonly auth: IAuth, @IRouter readonly router: IRouter) {
 
     }
-
-    load() {
-        console.log(...arguments);
-    }
-
+    
     canLoad(viewModel, params: Parameters, instruction: RoutingInstruction, navigation: Navigation) {
         const isAuth = instruction.route?.match.data?.isAuth ?? false;
 
