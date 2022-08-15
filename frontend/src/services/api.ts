@@ -4,6 +4,7 @@ import { IAuth } from './auth';
 
 const REST_ENDPOINT_WP        = 'https://api.itemhuntr.com/wp-json/wp/v2/';
 const REST_ENDPOINT_UTILITIES = 'https://api.itemhuntr.com/wp-json/utilities/v1/';
+const REST_ENDPOINT_USER      = 'https://api.itemhuntr.com/wp-json/user/v1/';
 
 export const IApi = DI.createInterface<IApi>('IApi', x => x.singleton(Api));
 
@@ -191,5 +192,11 @@ export class Api {
         });
 
         return response.json();
+    }
+
+    async getAvatar(id: string | number): Promise<string> {
+        const response = await this.http.fetch(`${REST_ENDPOINT_USER}avatar/${id}`);
+
+        return response.text();
     }
 }

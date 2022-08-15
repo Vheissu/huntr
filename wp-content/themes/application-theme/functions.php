@@ -197,6 +197,21 @@ class ApplicationSetup extends Timber\Site
 
         add_action('rest_api_init', 'register_custom_api_endpoints');
         function register_custom_api_endpoints() {
+            register_rest_route('user/v1', '/avatar/(?P<id>\d+)', array(
+                'methods' => 'GET',
+                'permission_callback' => '__return_true',
+                'callback' => function ($request) {
+                    $id = (int)$request->get_param('id');
+                    $avatar_image = get_field('avatar_image', 'user_' . $id);
+                    
+                    if ($avatar_image) {
+                        return $avatar_image['sizes']['thumbnail'];
+                    }
+
+                    return null;
+                }
+            ));
+
             register_rest_route('utilities/v1', '/vote/(?P<id>\d+)', array(
                 'methods' => 'POST',
                 'permission_callback' => '__return_true',

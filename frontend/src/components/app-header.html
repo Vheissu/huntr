@@ -6,20 +6,21 @@
     </form>
 </div>
 
-<div class="main-menu flex-grow-1">
-    <ul class="menu d-flex gap-5">
+<div class="main-menu d-flex flex-grow-1">
+    <ul class="menu d-flex flex-grow-1 gap-5">
         <li class="menu-item menu-dropdown hover-menu-dropdown">
-            <a load="/">Products</a>
-            <div class="dropdown-menu dropdown-menu-hover">
-                <ul class="dropdown-items">
-                    <li class="dropdown-item">
-                        <a load="topics">Topics</a>
-                    </li>
-                    <li class="dropdown-item">
-                        <a load="collections">Collections</a>
-                    </li>
-                </ul>
-            </div>
+            <a href="javascript:void(0);" class="dropdown-toggle" role="button" id="productsDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
+            <ul class="dropdown-menu" aria-labelledby="productsDropdownMenuLink">
+                <li class="dropdown-item">
+                    <a load="/">Products</a>
+                </li>
+                <li class="dropdown-item">
+                    <a load="topics">Topics</a>
+                </li>
+                <li class="dropdown-item">
+                    <a load="collections">Collections</a>
+                </li>
+            </ul>
         </li>
         <li class="menu-item">
             <a load="about">About</a>
@@ -34,4 +35,20 @@
             <a load="register" title="Register">Register</a>
         </li>
     </ul>
+
+    <div class="d-flex">
+        <ul class="menu d-flex flex-grow-1 gap-5">
+            <li class="menu-item menu-dropdown hover-menu-dropdown">
+                <img src.bind="avatar" class="rounded-circle" height="40" width="40">
+
+                <div class="dropdown-menu dropdown-menu-hover">
+                    <ul class="dropdown-items">
+                        <li class="dropdown-item">
+                            <a load="my/profile">Profile</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>

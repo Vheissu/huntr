@@ -12,6 +12,7 @@
     "@aurelia/validation-html": "^2.0.0-alpha.35",
     "aurelia": "latest",
     "bootstrap": "^5.2.0",
+    "hotkeys-js": "^3.9.4",
     "izitoast": "^1.4.0"
   },
   "devDependencies": {

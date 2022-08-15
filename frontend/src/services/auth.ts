@@ -56,6 +56,7 @@ export interface IJwt {
     id: number;
     site: string;
     username: string;
+    avatar_image: string;
 }
 
 export class Auth {

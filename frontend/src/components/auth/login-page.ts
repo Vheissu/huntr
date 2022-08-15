@@ -8,6 +8,8 @@ import { IApi } from '../../services/api';
 import { IAuth } from '../../services/auth';
 import { IToastService, ToastMessage } from '../../services/toast-service';
 
+import hotkeys from 'hotkeys-js';
+
 export class LoginPage {
     private showLogin = true;
     private email: string;
@@ -24,6 +26,16 @@ export class LoginPage {
         validationRules.on(this)
             .ensure('email').required()
             .ensure('password').required().when(() => this.showLogin);
+    }
+
+    attached() {
+        hotkeys('ctrl+shift+u', (event, handler) => {
+            this.email = 'testing@fdslkfjsd.com';
+            this.password = 'password';
+            this.handleForm();
+            
+            event.preventDefault();
+        });
     }
 
     async handleForm() {

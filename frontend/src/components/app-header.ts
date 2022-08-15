@@ -1,7 +1,9 @@
 import { IAuth } from '../services/auth';
 
 export class AppHeader {
-    constructor(@IAuth readonly auth: IAuth) {
+    private avatar = '';
 
+    constructor(@IAuth readonly auth: IAuth) {
+        this.avatar = auth?.token?.avatar_image ?? '';
     }
 }
