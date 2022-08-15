@@ -87,6 +87,24 @@ class ApplicationSetup extends Timber\Site
             );
 
             register_rest_field(
+                'topics',
+                'tiny_media_src',
+                array(
+                    'get_callback' => function ($object) {
+                        $taxonomy_image = get_field('taxonomy_image', 'term_' . $object['id']);
+
+                        if ($taxonomy_image) {
+                            return $taxonomy_image['sizes']['thumbnail'];
+                        }
+
+                        return false;
+                    },
+                    'update_callback' => null,
+                    'schema'          => null,
+                )
+            );
+
+            register_rest_field(
                 'products',
                 'user_voted',
                 array(
