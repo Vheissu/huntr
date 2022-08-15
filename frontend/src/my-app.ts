@@ -32,7 +32,7 @@ const AppRoutes: IRoute[] = [
         title: 'Topics'
     },
     {
-        id: 'topics',
+        id: 'collections',
         component: () => import('./components/collections/collections-page'),
         path: ['collections', 'collections/:topic'],
         title: 'Collections'

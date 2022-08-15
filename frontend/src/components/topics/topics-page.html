@@ -1,0 +1,35 @@
+<div class="container mt-5">
+
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <h1 class="h3">Topics</h1>
+            <p>Curate your Itemhuntr experience by going into specific categories that interest you.</p>
+        </div>
+    </div>
+
+    <div class="row gap-4">
+
+        <div if.bind="!isTopic" class="col-md-12 d-flex flex-direction-row gap-4 product" repeat.for="topic of topics">
+            <a load="/topics/${topic.slug}" if.bind="topic.tiny_media_src">
+                <img class="img-fluid" src.bind="topic.tiny_media_src">
+            </a>
+            <div class="flex-grow-1 flex-shrink-1">
+                <h2 class="product-title h4"><a class="text-decoration-none text-reset" load="/topics/${topic.slug}" title.bind="topic.name">${topic.name}</a></h2>
+                <p>${topic.description}</p>
+            </div>
+        </div>
+
+        <div if.bind="isTopic" class="col-md-12 d-flex flex-direction-row gap-4 product" repeat.for="product of products">
+            <div class="row mb-3">
+                <div class="col-4" if.bind="product.featured_media_src">
+                    <img class="img-fluid" src.bind="product.featured_media_src">
+                </div>
+                <div class="col-8">
+                    <h2 class="product-title h4"><a load="products/${product.slug}" title.bind="product.title.rendered">${product.title.rendered}</a></h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

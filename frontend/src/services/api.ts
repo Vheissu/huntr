@@ -10,6 +10,18 @@ export const IApi = DI.createInterface<IApi>('IApi', x => x.singleton(Api));
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IApi extends Api {}
 
+export interface IWPTaxonomyResponse {
+    id: number;
+    count: number;
+    description: string;
+    link: string;
+    name: string;
+    slug: string;
+    taxonomy: string;
+    meta: unknown[];
+    acf: unknown[];
+}
+
 export class Api {
     private http: HttpClient = new HttpClient();
 
@@ -87,6 +99,12 @@ export class Api {
         return response.json();
     }
 
+    async getProductsByTopic(slug: string): Promise<any[]> {
+        const response = await this.http.fetch(`${REST_ENDPOINT_WP}products?topics_slug=${slug}`);
+
+        return response.json();
+    }
+
     async getProduct(productId: string): Promise<any> {
         try {
             const response = await this.http.fetch(`${REST_ENDPOINT_WP}products?post_name=${productId}`);
@@ -100,25 +118,25 @@ export class Api {
         }
     }
 
-    async getTopics(): Promise<any> {
+    async getTopics(): Promise<IWPTaxonomyResponse[]> {
         const response = await this.http.fetch(`${REST_ENDPOINT_WP}topics`);
 
         return response.json();
     }
 
-    async getTopic(topicId): Promise<any> {
+    async getTopic(topicId): Promise<IWPTaxonomyResponse> {
         const response = await this.http.fetch(`${REST_ENDPOINT_WP}topics/${topicId}`);
 
         return response.json();
     }
 
-    async getCollections(): Promise<any> {
+    async getCollections(): Promise<IWPTaxonomyResponse[]> {
         const response = await this.http.fetch(`${REST_ENDPOINT_WP}collections`);
 
         return response.json();
     }
 
-    async getCollection(collectionId): Promise<any> {
+    async getCollection(collectionId): Promise<IWPTaxonomyResponse> {
         const response = await this.http.fetch(`${REST_ENDPOINT_WP}collections/${collectionId}`);
 
         return response.json();
