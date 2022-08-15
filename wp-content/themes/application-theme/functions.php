@@ -50,6 +50,23 @@ class ApplicationSetup extends Timber\Site
             return $options;
         });
 
+        function filter_rest_products_query( $args, $request ) {
+            $params = $request->get_params();
+
+            if ( isset($params['topics_slug']) ) {
+                $args['tax_query'] = array(
+                    array(
+                        'taxonomy' => 'topics',
+                        'field' => 'slug',
+                        'terms' => explode(',', $params['topics_slug'])
+                    )
+                );
+            }
+
+            return $args;
+        }
+        add_filter('rest_products_query', 'filter_rest_products_query', 10, 2);
+
         add_action('rest_api_init', 'register_custom_rest_fields');
         function register_custom_rest_fields()
         {
@@ -69,6 +86,7 @@ class ApplicationSetup extends Timber\Site
                     'schema'          => null,
                 )
             );
+            
             register_rest_field(
                 'products',
                 'tiny_media_src',
