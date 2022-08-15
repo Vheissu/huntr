@@ -1,8 +1,8 @@
 import { IRouteableComponent, IRoute } from "@aurelia/router";
 
+import './variables.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'izitoast/dist/css/iziToast.min.css';
-import './variables.css';
 
 const AppRoutes: IRoute[] = [
     {
@@ -10,11 +10,6 @@ const AppRoutes: IRoute[] = [
         path: '',
         title: 'Home',
         //redirectTo: '/home'
-    },
-    {
-        component: () => import('./components/home/home-page'),
-        path: 'home',
-        title: 'Home',
     },
     {
         id: 'about',

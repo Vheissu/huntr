@@ -8,10 +8,11 @@ import { RedirectHook } from './redirect-hook';
 
 import bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import shared from './shared.css';
+import variables from './variables.css';
 
 Aurelia
   .register(StyleConfiguration.shadowDOM({
-    sharedStyles: [bootstrap, shared]
+    sharedStyles: [bootstrap, variables, shared]
   }))
   .register(
       ValidationHtmlConfiguration, 
