@@ -1,5 +1,4 @@
 import { IRouter } from '@aurelia/router';
-import { customElement } from 'aurelia';
 import { IAuth } from "../../services/auth";
 
 export class LogoutPage {
