@@ -1,5 +1,6 @@
-import { HttpClient, json } from '@aurelia/fetch-client';
+import { HttpClient, json, RetryInterceptor } from '@aurelia/fetch-client';
 import { DI } from 'aurelia';
+import { IAuth } from './auth';
 
 const REST_ENDPOINT_WP        = 'https://api.itemhuntr.com/wp-json/wp/v2/';
 const REST_ENDPOINT_UTILITIES = 'https://api.itemhuntr.com/wp-json/utilities/v1/';
@@ -12,14 +13,31 @@ export interface IApi extends Api {}
 export class Api {
     private http: HttpClient = new HttpClient();
 
-    constructor() {
+    constructor(@IAuth readonly auth: IAuth) {
         this.http.configure(config => {
-            config.useStandardConfiguration();
             config.withInterceptor({
-                request(request) {
+                request: async (request) => {
+                    const decodedJwt = this.auth.token;
+                    
+                    if (decodedJwt) {
+                        const expires = decodedJwt.exp;
+                        const now = new Date().getTime();
+                        
+                        if (now > expires) {
+                            const newToken = await this.auth.refresh(localStorage.getItem('token'));
+
+                            if (newToken?.success) {
+                                localStorage.setItem('token', newToken.data.jwt);
+                            } else {
+                                localStorage.removeItem('token');
+                            }
+                        }
+                    }
+
                     if (localStorage.getItem('token')) {
                         request.headers.set('Authorization', `Bearer ${localStorage.getItem('token')}`);
                     }
+
                     return request;
                 }
             });

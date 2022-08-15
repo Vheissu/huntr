@@ -49,6 +49,15 @@ export interface IRegisterResponse {
     };
 }
 
+export interface IJwt {
+    email: string;
+    exp: number;
+    iat: number;
+    id: number;
+    site: string;
+    username: string;
+}
+
 export class Auth {
     private http: HttpClient = new HttpClient();
 
@@ -108,7 +117,7 @@ export class Auth {
         return response.json();
     }
 
-    async refresh(token: string) {
+    async refresh(token: string): Promise<IAuthResponse> {
         const response = await this.http.fetch(`${REST_ENDPOINT_AUTH}auth/refresh`, {
             method: 'POST',
             body: json({
@@ -132,5 +141,17 @@ export class Auth {
 
     get isLoggedIn(): boolean {
         return localStorage.getItem('token') !== null;
+    }
+
+    get token(): IJwt {
+        const token = localStorage.getItem('token');
+
+        if (token) {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace('-', '+').replace('_', '/');
+            return JSON.parse(window.atob(base64));
+        }
+
+        return null;
     }
 }
