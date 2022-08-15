@@ -1,8 +1,10 @@
-import { IRouteableComponent, IRoute } from "@aurelia/router";
+import { IAuth } from './services/auth';
+import { IRouteableComponent, IRoute, IRouter } from "@aurelia/router";
 
 import './variables.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'izitoast/dist/css/iziToast.min.css';
+import { CustomElement } from "aurelia";
 
 const AppRoutes: IRoute[] = [
     {
@@ -43,6 +45,11 @@ const AppRoutes: IRoute[] = [
         data: {
             public: true
         }
+    },
+    {
+        id: 'logout',
+        path: 'logout',
+        component: () => import('./components/auth/logout-page'),
     },
     {
         id: 'register',

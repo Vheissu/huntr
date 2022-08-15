@@ -27,6 +27,9 @@
         <li if.bind="!auth.isLoggedIn">
             <a load="login" title="Login">Login</a>
         </li>
+        <li if.bind="auth.isLoggedIn">
+            <a load="logout" title="Logout">Logout</a>
+        </li>
         <li if.bind="!auth.isLoggedIn">
             <a load="register" title="Register">Register</a>
         </li>

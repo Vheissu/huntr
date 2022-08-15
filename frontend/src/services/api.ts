@@ -20,8 +20,8 @@ export class Api {
                     const decodedJwt = this.auth.token;
                     
                     if (decodedJwt) {
-                        const expires = decodedJwt.exp;
-                        const now = new Date().getTime();
+                        const expires = decodedJwt.exp * 1000;
+                        const now = Date.now();
                         
                         if (now > expires) {
                             const newToken = await this.auth.refresh(localStorage.getItem('token'));
