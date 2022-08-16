@@ -197,18 +197,60 @@ class ApplicationSetup extends Timber\Site
 
         add_action('rest_api_init', 'register_custom_api_endpoints');
         function register_custom_api_endpoints() {
-            register_rest_route('user/v1', '/avatar/(?P<id>\d+)', array(
+            register_rest_route('user/v1', '/me', array(
                 'methods' => 'GET',
-                'permission_callback' => '__return_true',
-                'callback' => function ($request) {
-                    $id = (int)$request->get_param('id');
-                    $avatar_image = get_field('avatar_image', 'user_' . $id);
-                    
-                    if ($avatar_image) {
-                        return $avatar_image['sizes']['thumbnail'];
+                'permission_callback' => function(WP_REST_Request $request ) {
+                    $authorization = $request->get_header('authorization');
+
+                    if ( is_null($authorization) ) {
+                        return false;
                     }
 
-                    return null;
+                    $token = str_replace('Bearer ', '', $authorization);
+                    $decoded = json_decode(base64_decode(str_replace('_', '/', str_replace('-','+',explode('.', $token)[1]))));
+
+                    // We have a decoded JWT
+                    if ( $decoded ) {
+                        // JWT contains ID
+                        if ( isset($decoded->id) ) {
+                            $current_unix_time = time();
+                            
+                            if ( $current_unix_time < $decoded->exp ) {
+                                return true;
+                            }
+                        }
+                    }
+
+                    return false;
+                },
+                'callback' => function ($request) {
+                    $token   = str_replace('Bearer ', '', $request->get_header('authorization'));
+
+                    $decoded = json_decode(base64_decode(str_replace('_', '/', str_replace('-','+',explode('.', $token)[1]))));
+                    
+                    $user_id = $decoded->id;
+
+                    $user = get_user_by('id', $user_id);
+
+                    $user_obj = new stdClass;
+
+                    $user_obj->id = $user->ID;
+                    $user_obj->first_name = get_user_meta($user->ID, 'first_name', true);
+                    $user_obj->last_name = get_user_meta($user->ID, 'last_name', true);
+
+                    $avatar_image = get_field('avatar_image', 'user_' . $user->ID);
+
+                    if ($avatar_image) {
+                        $user_obj->avatar_image = $avatar_image['sizes']['thumbnail'];
+                    }
+
+                    $headline = get_field('headline', 'user_' . $user->ID);
+
+                    if ( $headline ) {
+                        $user_obj->headline = $headline;
+                    }
+                    
+                    return new WP_REST_Response($user_obj, 200);
                 }
             ));
 
