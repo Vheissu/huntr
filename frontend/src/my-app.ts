@@ -4,6 +4,7 @@ import { IRouteableComponent, IRoute, IRouter } from "@aurelia/router";
 import './variables.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'izitoast/dist/css/iziToast.min.css';
+import { ILoader } from './services/loader';
 
 const AppRoutes: IRoute[] = [
     {
@@ -73,5 +74,9 @@ const AppRoutes: IRoute[] = [
 export class MyApp implements IRouteableComponent {
 
     static routes: IRoute[] = AppRoutes;
+
+    constructor(@ILoader readonly loader: ILoader) {
+        
+    }
 
 }
