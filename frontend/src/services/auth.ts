@@ -3,6 +3,7 @@ import { DI } from 'aurelia';
 
 const REST_ENDPOINT_WP   = 'https://api.itemhuntr.com/wp-json/wp/v2/';
 const REST_ENDPOINT_AUTH = 'https://api.itemhuntr.com/wp-json/auth/v1/';
+const REST_ENDPOINT_USER = 'https://api.itemhuntr.com/wp-json/user/v1/';
 
 const AUTH_KEY = 'jdlaksjdlaksjdalks5353xcv#!@#!@';
 
@@ -135,6 +136,14 @@ export class Auth {
             body: json({
                 JWT: token
             })
+        });
+
+        return response.json();
+    }
+
+    async user() {
+        const response = await this.http.fetch(`${REST_ENDPOINT_USER}me`, {
+            method: 'GET'
         });
 
         return response.json();
