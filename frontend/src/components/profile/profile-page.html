@@ -1,0 +1,35 @@
+
+<div class="mb-3 d-flex flex-direction-row user-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="user-wrapper d-flex align-items-center">
+                    <div class="user-avatar">
+                        <img class="rounded-circle" src.bind="user.avatar_image">
+                    </div>
+                    <div class="user-info">
+                        <h1 class="h3">${user.first_name} ${user.last_name}</h1>
+                        <p if.bind="user.headline">${user.headline}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+
+    <div class="row">
+
+        <!-- <div class="col-md-12 d-flex flex-direction-row gap-4 product" repeat.for="product of products">
+            <a load="/products/${product.slug}">
+                <img class="img-fluid" src.bind="product.tiny_media_src">
+            </a>
+            <div class="flex-grow-1 flex-shrink-1">
+                <h2 class="product-title h4 fs-6"><a class="text-decoration-none text-reset" load="/products/${product.slug}" title.bind="product.title.rendered">${product.title.rendered}</a></h2>
+            </div>
+        </div> -->
+
+    </div>
+
+</div>
