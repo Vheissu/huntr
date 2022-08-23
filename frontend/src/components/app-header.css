@@ -42,38 +42,3 @@
 .menu .active {
     font-weight: 600;
 }
-
-.menu-dropdown {
-    position: relative;
-}
-
-.menu-dropdown:hover .dropdown-menu,
-.menu-dropdown:focus .dropdown-menu {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.dropdown-menu {
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 17px;
-    transform: translateY(10px);
-    width: 280px;
-    z-index: 250;
-}
-
-.dropdown-items {
-    background: #FFF;
-    list-style: none;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-}
-
-.hover-menu-dropdown:hover > .dropdown-menu-hover {
-    display: block;
-    margin: 0;
-    opacity: 1;
-    transform: translate(0px, 35px);
-}
