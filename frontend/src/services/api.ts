@@ -108,7 +108,7 @@ export class Api {
 
     async getProduct(productId: string): Promise<any> {
         try {
-            const response = await this.http.fetch(`${REST_ENDPOINT_WP}products?post_name=${productId}`);
+            const response = await this.http.fetch(`${REST_ENDPOINT_WP}products?slug=${productId}`);
             const product = await response.json();
 
             if (product.length) {
