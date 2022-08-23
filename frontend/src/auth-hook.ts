@@ -11,10 +11,18 @@ export class AuthHook {
     canLoad(viewModel, params: Parameters, instruction: RoutingInstruction, navigation: Navigation) {
         const isAuth = instruction.route?.match.data?.isAuth ?? false;
 
-        if (!isAuth || this.auth.isLoggedIn && isAuth) {
+        if ( !isAuth ) {
             return true;
         }
 
-        return this.router.load('/login');
+        console.log(this.auth.isLoggedIn);
+
+        if (this.auth.isLoggedIn && isAuth) {
+            return true;
+        }
+
+        this.router.load('/login');
+
+        return false;
     }
 }
