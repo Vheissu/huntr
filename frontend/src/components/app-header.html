@@ -7,12 +7,12 @@
 </div>
 
 <div class="main-menu d-flex flex-grow-1">
-    <ul class="menu d-flex flex-grow-1 gap-5">
+    <ul class="menu d-flex align-items-center flex-grow-1 gap-5">
         <li class="menu-item dropdown">
             <a class="dropdown-toggle dropdown-toggle-product" click.trigger="productDropdown.toggle()" role="button" id="productsDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
             <ul class="dropdown-menu" aria-labelledby="productsDropdownMenuLink">
                 <li class="dropdown-item">
-                    <a load="/">Products</a>
+                    <a load="">Products</a>
                 </li>
                 <li class="dropdown-item">
                     <a load="topics">Topics</a>
@@ -36,8 +36,11 @@
         </li>
     </ul>
 
-    <div class="d-flex" if.bind="auth.isLoggedIn">
-        <ul class="menu d-flex flex-grow-1 gap-5">
+    <div class="d-flex align-items-center" if.bind="auth.isLoggedIn">
+        <ul class="menu align-items-center d-flex flex-grow-1 gap-5">
+            <li if.bind="auth.isLoggedIn">
+                <a load="new/product" title="Submit">Submit</a>
+            </li>
             <li class="menu-item dropdown">
                 <img  src.bind="avatar" class="dropdown-toggle dropdown-toggle-profile rounded-circle" click.trigger="profileDropdown.toggle()" role="button" id="profileDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" height="40" width="40">
 

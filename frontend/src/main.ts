@@ -1,3 +1,4 @@
+import { SmartInput } from './components/smart-input/smart-input';
 import Aurelia, { StyleConfiguration } from 'aurelia';
 import { ValidationHtmlConfiguration } from '@aurelia/validation-html';
 import { RouterConfiguration } from '@aurelia/router';
@@ -16,7 +17,8 @@ Aurelia
   }))
   .register(
       ValidationHtmlConfiguration, 
-      RouterConfiguration.customize({ useUrlFragmentHash: false }),
+      RouterConfiguration.customize({ useUrlFragmentHash: false, useDirectRouting: false, useHref: false }),
+      SmartInput,
       AuthHook,
       RedirectHook
   )

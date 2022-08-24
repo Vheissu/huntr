@@ -1,0 +1,19 @@
+<div class="container mt-5">
+
+    <div class="row justify-content-center mb-3">
+        <div class="col-8">
+            <h1>Submit a product</h1>
+            <p class="fs-4 fw-light">Hello, Huntr. Found something cool, or maybe you made something cool? Tell the internet all about it.</p>
+
+            <form>
+                <div class="mb-3">
+                    <label for="urlInput" class="form-label">Enter a link to the product</label>
+                    <input type="url" class="form-control" id="urlInput" value.bind="url" placeholder="https://google.com">
+                </div>
+
+                <button type="button" class="btn btn-lg btn-brand" click.trigger="save()" disabled.bind="url == ''">Next</button>
+            </form>
+        </div>
+    </div>
+
+</div>

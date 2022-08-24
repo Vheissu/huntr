@@ -69,6 +69,24 @@ const AppRoutes: IRoute[] = [
             isAuth: true
         }
     },
+    {
+        id: 'submit-product',
+        component: () => import('./components/products/submit-product'),
+        path: 'new/product',
+        title: 'Submit Product',
+        data: {
+            isAuth: true
+        }
+    },
+    {
+        id: 'submit-product-submission',
+        component: () => import('./components/products/new-submission'),
+        path: 'new/product/submission',
+        title: 'Submit Product',
+        data: {
+            isAuth: true
+        }
+    },
 ];
 
 export class MyApp implements IRouteableComponent {
