@@ -18,8 +18,13 @@ export class AppHeader {
 
   bound() {
     this.ea.subscribe('au:router:navigation-start', payload => {
+      if (this.productDropdown) {
         this.productDropdown.hide();
+      }
+
+      if (this.profileDropdown) {
         this.profileDropdown.hide();
+      }
     });
   }
 
@@ -32,8 +37,13 @@ export class AppHeader {
       ".dropdown-toggle-profile"
     );
 
-    this.productDropdown = new Dropdown(dropdownProductElement);
-    this.profileDropdown = new Dropdown(dropdownProfileElement);
+    if (dropdownProductElement) {
+      this.productDropdown = new Dropdown(dropdownProductElement);
+    }
+
+    if (dropdownProfileElement) {
+      this.profileDropdown = new Dropdown(dropdownProfileElement);
+    }
 
     // this.element.shadowRoot.addEventListener('click', event => {
     //     if ((event.target as HTMLElement).tagName !== 'A') {
