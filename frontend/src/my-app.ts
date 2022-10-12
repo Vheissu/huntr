@@ -9,7 +9,7 @@ import { ILoader } from './services/loader';
 const AppRoutes: IRoute[] = [
     {
         component: () => import('./components/home/home-page'),
-        path: '',
+        path: ['', 'home'],
         title: 'Home',
         //redirectTo: '/home'
     },

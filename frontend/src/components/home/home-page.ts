@@ -5,7 +5,11 @@ export class HomePage {
 
     constructor(@IApi readonly api: IApi) {}
 
-    async load() {
-        this.products = await this.api.getProducts();
+    async loading() {
+        try {
+            this.products = await this.api.getProducts();
+        } catch (e) {
+            console.error(e);
+        }
     }
 }

@@ -1,4 +1,4 @@
-import { bindable } from "aurelia";
+import { bindable, BindingMode } from "aurelia";
 
 export function generateId(): string {
     return Math.random().toString(36).substring(2, 9);
@@ -9,5 +9,5 @@ export class SmartInput {
     @bindable type = 'text';
     @bindable label = '';
     @bindable placeholder = null;
-    @bindable value = '';
+    @bindable({ mode: BindingMode.twoWay }) value = '';
 }

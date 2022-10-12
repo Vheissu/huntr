@@ -1,0 +1,18 @@
+<input type="file" ref="image" input.trigger="fileSelected($event)" multiple.bind="type == 'gallery'">
+
+<div class="image-wrapper ${type}" if.bind="type == 'thumbnail'">
+    <img src.bind="imagePreviews[0]" class="img-fluid">
+</div>
+
+<div class="image-wrapper ${type}" if.bind="type == 'gallery'">
+    <div class="main-image" if.bind="imagePreviews.length > 0">
+        <img src.bind="imagePreviews[0]" class="img-fluid">
+    </div>
+
+    <div class="gallery-thumbs row">
+        <div class="col-2" repeat.for="image of imagePreviews.slice(1)">
+            <img src.bind="image" class="img-fluid">
+        </div>
+    </div>
+    
+</div>

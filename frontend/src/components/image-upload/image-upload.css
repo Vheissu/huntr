@@ -1,0 +1,8 @@
+.image-wrapper {
+
+}
+
+.image-wrapper.thumbnail {
+    height: 80px;
+    width: 80px;
+}
