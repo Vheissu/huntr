@@ -1,12 +1,25 @@
 .image-wrapper {
-
 }
 
 .image-wrapper.thumbnail {
-    height: 80px;
-    width: 80px;
+  height: 80px;
+  width: 80px;
 }
 
-.main-image {
-    width: 500px;
+.thumbnail .remove,
+.gallery .remove {
+  right: 0;
+}
+
+.remove {
+  background: #E8245c;
+  border: none;
+  color: #FFF;
+  font-size: 0.78rem;
+  line-height: 1;
+  margin: 0;
+  padding: 3px 5px;
+  position: absolute;
+  right: 12px;
+  top: 0;
 }

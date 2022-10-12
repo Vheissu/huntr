@@ -1,18 +1,25 @@
-<input type="file" ref="image" input.trigger="fileSelected($event)" multiple.bind="type == 'gallery'">
+<template class="d-block py-5">
+  <input type="file" ref="image" input.trigger="fileSelected($event)" multiple.bind="type == 'gallery' ? true : false">
 
-<div class="image-wrapper ${type}" if.bind="type == 'thumbnail'">
-    <img src.bind="imagePreviews[0]" class="img-fluid">
-</div>
-
-<div class="image-wrapper ${type}" if.bind="type == 'gallery'">
-    <div class="main-image" if.bind="imagePreviews.length > 0">
-        <img src.bind="imagePreviews[0]" class="img-fluid">
-    </div>
-
-    <div class="gallery-thumbs row">
-        <div class="col-2" repeat.for="image of imagePreviews.slice(1)">
-            <img src.bind="image" class="img-fluid">
-        </div>
-    </div>
-    
-</div>
+  <div class="image-wrapper position-relative ${type} ${!imagePreviews[0].ready ? 'loading' : ''}" if.bind="type == 'thumbnail'">
+      <button type="button" class="remove" click.trigger="removeImage(0)" if.bind="imagePreviews.length">X</button>
+      <img src.bind="imagePreviews[0].image" class="img-fluid">
+  </div>
+  
+  <div class="image-wrapper ${type}" if.bind="type == 'gallery'">
+      <div class="main-image position-relative mb-3 ${!imagePreviews[0].ready ? 'loading' : ''}" if.bind="imagePreviews.length > 0">
+          <button type="button" class="remove" click.trigger="removeImage(0)" if.bind="imagePreviews.length">X</button>
+          <img src.bind="imagePreviews[0].image" class="img-fluid w-100" if.bind="imagePreviews[0].ready">
+      </div>
+  
+      <div class="gallery-thumbs row" au-sortable="offset.bind: 1;" sortable-update.trigger="e => orderChanged(e)">
+          <div class="col-3 mb-3 position-relative ${!image.ready ? 'loading' : ''}" repeat.for="image of imagePreviews.slice(1)">
+            <button type="button" class="remove" click.trigger="removeImage($index + 1)" if.bind="imagePreviews.length">X</button>
+            <img src.bind="image.image" class="img-fluid w-100" if.bind="image.ready">
+            
+            <svg if.bind="!image.ready" xmlns="http://www.w3.org/2000/svg" width="140" height="140"><rect x="2" y="2" width="136" height="136" style="fill:#dedede;"/><text x="50%" y="50%" font-size="18" text-anchor="middle" alignment-baseline="middle" font-family="monospace, sans-serif" fill="#555555"> </text></svg>
+          </div>
+      </div>
+      
+  </div>
+</template>

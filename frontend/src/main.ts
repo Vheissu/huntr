@@ -10,6 +10,7 @@ import { RedirectHook } from './redirect-hook';
 import bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import shared from './shared.css';
 import variables from './variables.css';
+import { AuSortable } from './resources/au-sortable';
 
 Aurelia
   .register(StyleConfiguration.shadowDOM({
@@ -20,7 +21,8 @@ Aurelia
       RouterConfiguration.customize({ useUrlFragmentHash: false, useDirectRouting: false, useHref: false }),
       SmartInput,
       AuthHook,
-      RedirectHook
+      RedirectHook,
+      AuSortable
   )
   .app(MyApp)
   .start();

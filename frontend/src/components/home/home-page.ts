@@ -1,4 +1,4 @@
-import { IApi } from "../../services/api";
+import { IApi } from '../../services/api';
 
 export class HomePage {
     private products = [];

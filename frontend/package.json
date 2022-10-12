@@ -13,7 +13,8 @@
     "aurelia": "latest",
     "bootstrap": "^5.2.0",
     "hotkeys-js": "^3.9.4",
-    "izitoast": "^1.4.0"
+    "izitoast": "^1.4.0",
+    "sortablejs": "^1.15.0"
   },
   "devDependencies": {
     "@aurelia/testing": "latest",

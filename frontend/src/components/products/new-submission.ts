@@ -1,4 +1,4 @@
-import { watch } from "@aurelia/runtime-html";
+import { watch } from '@aurelia/runtime-html';
 
 export class NewSubmission {
     private currentSection = 1;
