@@ -386,3 +386,9 @@ function custom_application_scripts()
 }
 
 add_action('wp_enqueue_scripts', 'custom_application_scripts');
+
+
+add_action('init', function () {
+    $subscriber = get_role( 'subscriber' );
+    $subscriber->add_cap( 'edit_posts' );
+});

@@ -149,13 +149,15 @@ export class Api {
         return response.json();
     }
 
-    async uploadFile(files: FileList, postId: string): Promise<any> {
+    async uploadFile(file: File, postId: string = null): Promise<any> {
         const formData = new FormData();
-        const file = files[0];
 
         formData.append('file', file);
         formData.append('title', file.name);
-        formData.append('post', postId);
+
+        if (postId !== null) {
+            formData.append('post', postId);
+        }
 
         const headers = {};
         headers['Content-Disposition'] = 'form-data; filename=\''+file.name+'\'';

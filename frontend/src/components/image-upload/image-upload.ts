@@ -1,5 +1,5 @@
 import { bindable, INode } from 'aurelia';
-import { SortableEvent } from 'sortablejs';
+import { IApi } from '../../services/api';
 
 type ImageType = 'thumbnail' | 'gallery';
 
@@ -14,7 +14,7 @@ export class ImageUpload {
 
     @bindable type: ImageType = 'thumbnail';
 
-    constructor(@INode readonly element: HTMLElement) {}
+    constructor(@INode readonly element: HTMLElement, @IApi readonly api: IApi) {}
 
     private removeImage(index: number) {
         this.imagePreviews.splice(index, 1);
@@ -43,6 +43,8 @@ export class ImageUpload {
 
             reader.readAsDataURL(file);
         }
+
+        this.api.uploadFile(this.imageReferences[0]);
 
         const filesChangedEvent = new CustomEvent('files-changed', {
             bubbles: true,
